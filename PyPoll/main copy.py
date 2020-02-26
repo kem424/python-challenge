@@ -27,12 +27,14 @@ with open (file, 'r', newline= "") as csvfile:
 
     candidates=row[2]
 
-    #If existing candidate then add to total; otherwise add to candidates dictionary, 1 vote
-    if candidate in candidates:
-        candidate[candidate]=candidate[candidate +1
-    
-    else: 
-        candidates[candidate]= 1
+#if candidate has other votes then add to vote tally
+if candidate in candidates:
+    candidate_index = candidates.index(candidate)
+    vote_counts[candidate_index] = vote_counts[candidate_index] + 1
+ #else create new spot in list for candidate
+else:
+    candidates.append(candidate)
+    vote_counts.append(1)
 
 
     #loop the data
