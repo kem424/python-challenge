@@ -67,6 +67,16 @@ print(f"Greatest Increase in Profit:{Greatest_Increase[0]} ({Greatest_Increase[1
 print(f"Greatest Decrease in Profit:{Greatest_Decrease[0]} ({Greatest_Decrease[1]})")
 
 bank=open("PyBank.text","w")
+<<<<<<< HEAD
+=======
+
+bank.write("Financial Analysis")
+bank.write("Total_Months:" + str(total_months))
+bank.write("Total:$" + str(total_pl))
+bank.write("Average Change:$" +str(average_pl))
+bank.write(f"Greatest Increase in Profit:{Greatest_Increase[0]} ({Greatest_Increase[1]})")
+bank.write(f"Greatest Decrease in Profit:{Greatest_Decrease[0]} ({Greatest_Decrease[1]})")
+>>>>>>> ea0f11fdb31a1e643855d021e02195efd8a29670
 
 bank.write("Financial Analysis")
 bank.write("Total_Months:" + str(total_months))
