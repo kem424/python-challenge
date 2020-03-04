@@ -5,53 +5,55 @@ import csv
 #open CSV file
 file=os.path.join('Resources','election_data.csv')
 with open (file, 'r', newline= "") as csvfile:
-    csvreader=csv.reader(csvfile, delimiter= ",")
+    reader=csv.reader(csvfile, delimiter= ",")
    
 
    #variables
 total_votes = 0
-candidates_unique = []
-candidate_votes = []
+candidates= []
+individual_votes = []
 
-for row in csvreader:
+for row in reader:
         #Total Votes
         total_votes += 1
         #skip 
         candidate_in = (row[2])
         #add to vote count if candidate already exists
-        if candidate_in in candidates_unique:
-            candidate_index = candidates_unique.index(candidate_in)
-            candidate_votes[candidate_index] = candidate_votes[candidate_index] + 1
+        if candidate_in in candidates:
+            candidate_index = candidates.index(candidate_in)
+            individual_votes[candidate_index] = individual_votes[candidate_index] + 1
         else:
             #if candidate was not found in candidates list then append to list and add 1 to vote count
-            candidates_unique.append(candidate_in)
-            candidate_votes.append(1)
+            candidates.append(candidate_in)
+            individual_votes.append(1)
 
 pct = []
-max_votes = candidate_votes[0]
+max_votes = individual_votes[0]
 max_index = 0
 
-for x in range(len(candidates_unique)):
+for x in range(len(candidates)):
     #calculation to get the percentage
-    vote_pct = round(candidate_votes[x]/total_votes*100, 2)
+    vote_pct = round(individual_votes[x]/total_votes*100, 2)
     pct.append(vote_pct)
     
-    if candidate_votes[x] > max_votes:
-        max_votes = candidate_votes[x]
+    if individual_votes[x] > max_votes:
+        max_votes = individual_votes[x]
         max_index = x
 
-election_winner = candidates_unique[max_index] 
+election_winner = candidates[max_index] 
 
 
 print('|                  Election Results                  |')
 print('======================================================')
 print(f'Total Votes: {total_votes}')
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-for x in range(len(candidates_unique)):
-    print(f'{candidates_unique[x]} : {pct[x]}% ({candidate_votes[x]})')
+for x in range(len(candidates)):
+    print(f'{candidates[x]} : {pct[x]}% ({individual_votes[x]})')
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 print(f'Election winner: {election_winner.upper()}')
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+
+
 
 
 Election Results
